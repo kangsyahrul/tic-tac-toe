@@ -1,3 +1,4 @@
+import sys
 import numpy as np
 
 
@@ -64,8 +65,8 @@ def checkWinner(vals, match=3):
     h, w = np.array(vals).shape
 
     arrays = []
-    arrays.append(('horizontal', getHorizontalVals(vals)))
-    arrays.append(('vertical', getVerticalVals(vals)))
+    arrays.append(('horizontal', getHorizontalVals(vals, match=match)))
+    arrays.append(('vertical', getVerticalVals(vals, match=match)))
     arrays.append(('diagonal up', getDiagonalVals(vals, 'up', match=match)))
     arrays.append(('diagonal down', getDiagonalVals(vals, 'down', match=match)))
 
@@ -73,16 +74,19 @@ def checkWinner(vals, match=3):
     for kind, array in arrays:
         for vals in array:
             (winner, point), count = vals[0], 1
+            area = [(winner, point)]
             for val, point in vals[1:]:
                 if winner == val and winner != ' ':
                     count += 1
+                    area.append((winner, point))
 
                 else:
                     winner = val
                     count = 1
+                    area = [(winner, point)]
                 
                 if count >= match:
                     print(f'{winner} WIN THE GAME BY {kind} IN {vals}')
-                    return winner, vals
+                    return winner, area
 
     return None, []

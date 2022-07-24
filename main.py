@@ -7,8 +7,15 @@ import util.winner as wn
 from time import sleep
 from model.point import Point
 
-vals = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
+# GAME SETTINGS
+GAME_SIZE = (4, 7)  # board size
+GAME_MATCH = 5       # number of tic tac toe
+
+
+# Variables
+vals = []
 point = Point(0, 0)
+
 
 def main():
     global vals, point
@@ -68,8 +75,11 @@ def gameOver(winner, area):
     else:
         gameOver(winner, area)
 
+
 def gameStart():
-    restartGame()
+    global point, vals
+
+    point, vals = restartGame()
     main()
 
 
@@ -86,13 +96,13 @@ def keyboardAction(key, point, vals):
     # Vertical
     if key == 'up' and point.y > 0:
         point.y = point.y - 1
-    if key == 'down' and point.y < 2:
+    if key == 'down' and point.y < GAME_SIZE[1] - 1:
         point.y = point.y + 1
     
     # Horizontal
     if key == 'left' and point.x > 0:
         point.x = point.x - 1
-    if key == 'right' and point.x < 2:
+    if key == 'right' and point.x < GAME_SIZE[0] - 1:
         point.x = point.x + 1
     
     # X
@@ -101,13 +111,14 @@ def keyboardAction(key, point, vals):
 
     # Restart
     if str(key).lower() == 'r':
-        vals = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
+        point, vals = restartGame()
     
     return point, vals
 
+
 def isGameOver(vals):
     # Check if there is a winner
-    winner, area = wn.checkWinner(vals)
+    winner, area = wn.checkWinner(vals, match=GAME_MATCH)
     if winner is not None:
         print(f'Winner is: "{winner}"')
         return True, winner, area
@@ -140,10 +151,17 @@ def isComputer(vals):
 
 
 def restartGame():
-    global vals, point
+    w, h = GAME_SIZE
+    vals = []
+    for y in range(h):
+        val = []
+        for x in range(w):
+            val.append(' ')
+        vals.append(val)
+    
+    point = Point(0, 0)
 
-    vals = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
-    point = Point(1, 1)
+    return point, vals
 
 
 if __name__ == '__main__':

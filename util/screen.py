@@ -29,12 +29,12 @@ def drawBoard(point: Point, vals, padding=(2, 1), area=[]):
     padding_x, padding_y = padding
 
     i = 0
-    for y in range(7 + 6 * (padding_y - 1)):
-        for x in range(7 + 6 * (padding_x - 1)):
+    for y in range((h * 2 + 1) + (h * 2) * (padding_y - 1)):
+        for x in range((w * 2 + 1) + (w * 2) * (padding_x - 1)):
             if y % (padding_y * 2) == padding_y:
                 if x % (padding_x * 2) == padding_x:
                     # Value
-                    a, b = i % 3, i // 3
+                    a, b = i % w, i // w
                     if point.x == a and point.y == b:
                         # Hightlight this cell
                         val = vals[b][a]

@@ -29,6 +29,7 @@ def getWinProb(vals, values, player, match=3):
             # print()
     return res
 
+
 def getMovesProb(vals, player, match=3):
     h, w = np.array(vals).shape
 
@@ -62,8 +63,10 @@ def getMovesProb(vals, player, match=3):
 
     return probs
 
+
 def normalize(data):
     return (data - np.min(data)) / (np.max(data) - np.min(data))
+
 
 def getNexMove(vals, player, match=3):
     h, w = np.array(vals).shape

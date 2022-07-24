@@ -86,7 +86,6 @@ def checkWinner(vals, match=3):
                     area = [(winner, point)]
                 
                 if count >= match:
-                    print(f'{winner} WIN THE GAME BY {kind} IN {vals}')
                     return winner, area
 
     return None, []

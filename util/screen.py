@@ -39,11 +39,10 @@ def drawBoard(point: Point, vals, padding=(2, 1), area=[]):
                         # Hightlight this cell
                         val = vals[b][a]
                         text = '_' if val == ' ' else val
-                        color = (255, 0, 0) # Red: filled up cell
+                        color = (255, 0, 255) # Red: filled up cell
 
                         if text == '_':
                             color = (0, 255, 0) # Green: pointer
-
                         for v, pt in area:
                             if a == pt[0] and b == pt[1]:
                                 color = (255, 255, 0) # Yellow: pointer
@@ -51,12 +50,16 @@ def drawBoard(point: Point, vals, padding=(2, 1), area=[]):
                         print(colored(color, text), end='')
 
                     else:
+                        text = vals[b][a] 
                         color = (255, 255, 255)
+                        if text == 'X':
+                            color = (0, 0, 255) # Blue: pointer
+                        elif text == 'O':
+                            color = (255, 0, 0) # Red: pointer
                         for v, pt in area:
                             if a == pt[0] and b == pt[1]:
                                 color = (255, 255, 0) # Yellow: pointer
 
-                        text = vals[b][a] 
                         print(colored(color, text), end='')
 
                     i += 1

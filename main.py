@@ -9,8 +9,8 @@ from time import sleep
 from model.point import Point
 
 # GAME SETTINGS
-GAME_SIZE = (3, 3)  # board size
-GAME_MATCH = 3      # number of tic tac toe
+GAME_SIZE = (6, 6)  # board size
+GAME_MATCH = 4      # number of tic tac toe
 
 
 # Variables
@@ -57,7 +57,12 @@ def gameOver(winner, area):
     sc.clearScreen()
     sc.drawBoard(point, vals, area=area)
     print('GAME OVER!!!')
-    print('Winner is : ', winner)
+    color = (255, 255, 255)
+    if winner == 'X': color = (0, 0, 255)
+    if winner == 'O': color = (255, 0, 0)
+    print('Winner is : ', end='')
+    print(sc.colored(color, winner))
+
     print()
     print('Press "R" to restart the game')
     print('Press "Q" to quit the game')
@@ -65,7 +70,6 @@ def gameOver(winner, area):
 
     # Read input
     key = keyboard.read_key()
-    print(f'Key: {key}')
     if key.lower() == 'r':
         point, vals = keyboardAction(key, point, vals)
         main()
@@ -121,7 +125,6 @@ def isGameOver(vals):
     # Check if there is a winner
     winner, area = wn.checkWinner(vals, match=GAME_MATCH)
     if winner is not None:
-        print(f'Winner is: "{winner}"')
         return True, winner, area
     
     # Check if all array is filled up
@@ -136,7 +139,7 @@ def computerNextMove(vals):
     x, y = comp.getNexMove(vals, 'O', match=GAME_MATCH)
     if vals[y][x] != ' ':
         while True:
-            x, y = random.randint(0, 2), random.randint(0, 2)
+            x, y = random.randint(0, GAME_SIZE[0] - 1), random.randint(0, GAME_SIZE[1] - 1)
             if vals[y][x] == ' ':
                 break
     vals[y][x] = 'O'

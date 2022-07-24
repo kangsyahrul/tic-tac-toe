@@ -1,9 +1,19 @@
+import util.screen as sc
 import util.computer as comp
 
 vals = [
-    ['X', 'O', 'X'], 
-    [' ', 'O', ' '], 
-    ['O', 'X', ' '],
+    ['X', ' ', ' ', ' ', ' '], 
+
+    ['X', ' ', ' ', ' ', ' '], 
+    
+    ['X', ' ', 'O', ' ', ' '],
+    
+    [' ', 'O', 'O', ' ', ' '],
+    
+    [' ', ' ', ' ', ' ', ' '],
+    
+    [' ', ' ', ' ', ' ', ' '],
 ]
-comp.getNexMove(vals, 'X', match=3)
-# comp.getNexMove(vals, 'O', match=3)
+sc.clearScreen()
+# comp.getNexMove(vals, 'X', match=4)
+comp.getNexMove(vals, 'O', match=4)

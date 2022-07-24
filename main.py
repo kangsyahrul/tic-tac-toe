@@ -3,13 +3,14 @@ import random
 import keyboard
 import util.screen as sc
 import util.winner as wn
+import util.computer as comp
 
 from time import sleep
 from model.point import Point
 
 # GAME SETTINGS
-GAME_SIZE = (4, 7)  # board size
-GAME_MATCH = 5       # number of tic tac toe
+GAME_SIZE = (3, 3)  # board size
+GAME_MATCH = 3      # number of tic tac toe
 
 
 # Variables
@@ -132,11 +133,13 @@ def isGameOver(vals):
     
 
 def computerNextMove(vals):
-    while True:
-        x, y = random.randint(0, 2), random.randint(0, 2)
-        if vals[y][x] == ' ':
-            vals[y][x] = 'O'
-            break
+    x, y = comp.getNexMove(vals, 'O', match=GAME_MATCH)
+    if vals[y][x] != ' ':
+        while True:
+            x, y = random.randint(0, 2), random.randint(0, 2)
+            if vals[y][x] == ' ':
+                break
+    vals[y][x] = 'O'
     return vals
 
 

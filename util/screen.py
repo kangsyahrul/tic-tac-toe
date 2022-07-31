@@ -39,17 +39,20 @@ def drawValues(img, point, padding, box, board, vals):
 
 
 def drawGameOver(img, point, padding, box, area):
-    box_px, box_py = box
-    x1, x2 = padding + point.x * (box_px), padding + (point.x + 1) * box_px
-    y1, y2 = padding + point.y * (box_py), padding + (point.y + 1) * box_py
+    if len(area) > 0:
+        box_px, box_py = box
+        x1, x2 = padding + point.x * (box_px), padding + (point.x + 1) * box_px
+        y1, y2 = padding + point.y * (box_py), padding + (point.y + 1) * box_py
 
-    x1, y1 = area[0][1]
-    x2, y2 = area[-1][1]
-    
-    x1, x2 = padding + x1 * box_px + box_px//2, padding + x2 * box_px + box_px//2
-    y1, y2 = padding + y1 * box_py + box_py//2, padding + y2 * box_py + box_py//2
+        x1, y1 = area[0][1]
+        x2, y2 = area[-1][1]
 
-    return cv2.line(img, (x1, y1), (x2, y2), (0, 125, 125), 32, cv2.LINE_AA)
+        x1, x2 = padding + x1 * box_px + box_px//2, padding + x2 * box_px + box_px//2
+        y1, y2 = padding + y1 * box_py + box_py//2, padding + y2 * box_py + box_py//2
+
+        return cv2.line(img, (x1, y1), (x2, y2), (0, 125, 125), 32, cv2.LINE_AA)
+
+    return img
 
 
 def getBackground(BOARD, WINDOW, PADDING):

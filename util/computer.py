@@ -73,16 +73,16 @@ def getNexMove(vals, player, match=3):
     np.set_printoptions(precision=3)
 
     probs_me = getMovesProb(vals, player, match=match)
-    # probs_me = normalize(probs_me)
-    # print(f'probs_me:')
-    # print(probs_me)
+    probs_me = normalize(probs_me)
+    print(f'probs_me:')
+    print(probs_me)
 
     probs_op = getMovesProb(vals, 'X' if player == 'O' else 'O', match=match)
-    # probs_op = normalize(probs_op)
-    # print(f'probs_op:')r
-    # print(probs_op)
+    probs_op = normalize(probs_op)
+    print(f'probs_op:')
+    print(probs_op)
 
-    probs = probs_me * 1.0 + probs_op * 1.0
+    probs = probs_me * 0.5 + probs_op * 1.0
     probs = normalize(probs)
     # print(f'probs:')
     # print(probs)

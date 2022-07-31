@@ -11,8 +11,8 @@ from model.point import Point
 
 
 # GAME SETTINGS
-BOARD_W, BOARD_H = BOARD_SIZE = (7, 7)  # board size
-GAME_MATCH = 4      # number of tic tac toe
+BOARD_W, BOARD_H = BOARD_SIZE = (3, 3)  # board size
+GAME_MATCH = 3      # number of tic tac toe
 
 # SCREEN SETTINGS
 PADDING = 24
